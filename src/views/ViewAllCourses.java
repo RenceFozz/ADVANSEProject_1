@@ -1,6 +1,7 @@
 package views;
 
 import dao.CourseDAO;
+import dao.StudentDAO;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import models.Course;
@@ -119,7 +120,24 @@ public class ViewAllCourses extends javax.swing.JFrame {
    }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        // TODO add your handling code here:
+        StudentDAO sDao = new StudentDAO();
+        String courseCode = null;
+        
+        int row = -1;
+	row = courseTable.getSelectedRow();
+	if(row > -1){
+            int end = courseTable.getRowCount() - 1;
+            System.out.println("Index of Start: "+(row+1)+"; Index of End: "+end+"; Index of To: "+row);
+            DefaultTableModel model = (DefaultTableModel) courseTable.getModel();
+            if(row!=end){
+                model.moveRow(row+1, end, row);
+            }
+            courseCode = (String)courseTable.getModel().getValueAt(end, 1);
+            model.removeRow(end);
+            courseTable.setModel(model);
+	}
+        
+        sDao.enrollCourse(student.getId(),courseCode);
     }//GEN-LAST:event_addBtnActionPerformed
 
 

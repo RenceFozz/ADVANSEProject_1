@@ -1,6 +1,7 @@
 package views;
 
 import dao.StudentDAO;
+import javax.swing.table.DefaultTableModel;
 import models.Student;
 
 public class ViewEnrolledCourses extends javax.swing.JFrame {
@@ -15,7 +16,7 @@ public class ViewEnrolledCourses extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        addBtn1 = new javax.swing.JButton();
+        dropBtn = new javax.swing.JButton();
         cancelBtn1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -25,10 +26,10 @@ public class ViewEnrolledCourses extends javax.swing.JFrame {
 
         jLabel2.setText("Student: Name");
 
-        addBtn1.setText("Drop");
-        addBtn1.addActionListener(new java.awt.event.ActionListener() {
+        dropBtn.setText("Drop");
+        dropBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addBtn1ActionPerformed(evt);
+                dropBtnActionPerformed(evt);
             }
         });
 
@@ -70,7 +71,7 @@ public class ViewEnrolledCourses extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(addBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dropBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cancelBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,18 +92,34 @@ public class ViewEnrolledCourses extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelBtn1)
-                    .addComponent(addBtn1))
+                    .addComponent(dropBtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   private void addBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtn1ActionPerformed
+   private void dropBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropBtnActionPerformed
       // TODO add your handling code here:
         StudentDAO sDao = new StudentDAO();
-        sDao.enrollCourse();
-   }//GEN-LAST:event_addBtn1ActionPerformed
+        String courseCode = null;
+        
+        int row = -1;
+	row = courseTable.getSelectedRow();
+	if(row > -1){
+            int end = courseTable.getRowCount() - 1;
+            System.out.println("Index of Start: "+(row+1)+"; Index of End: "+end+"; Index of To: "+row);
+            DefaultTableModel model = (DefaultTableModel) courseTable.getModel();
+            if(row!=end){
+                model.moveRow(row+1, end, row);
+            }
+            courseCode = (String)courseTable.getModel().getValueAt(end, 1);
+            model.removeRow(end);
+            courseTable.setModel(model);
+	}
+        
+        sDao.dropCourse(student.getId(),courseCode);
+   }//GEN-LAST:event_dropBtnActionPerformed
 
    private void cancelBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtn1ActionPerformed
        new OptionsMenu(student).setVisible(true);
@@ -110,9 +127,9 @@ public class ViewEnrolledCourses extends javax.swing.JFrame {
    }//GEN-LAST:event_cancelBtn1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addBtn1;
     private javax.swing.JButton cancelBtn1;
     private javax.swing.JTable courseTable;
+    private javax.swing.JButton dropBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
