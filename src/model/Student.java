@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import models.Course;
 
 public class Student {
    private String name;
