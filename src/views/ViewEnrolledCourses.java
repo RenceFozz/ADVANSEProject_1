@@ -1,5 +1,6 @@
 package views;
 
+import dao.StudentDAO;
 import models.Student;
 
 public class ViewEnrolledCourses extends javax.swing.JFrame {
@@ -99,6 +100,8 @@ public class ViewEnrolledCourses extends javax.swing.JFrame {
 
    private void addBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtn1ActionPerformed
       // TODO add your handling code here:
+        StudentDAO sDao = new StudentDAO();
+        sDao.enrollCourse();
    }//GEN-LAST:event_addBtn1ActionPerformed
 
    private void cancelBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtn1ActionPerformed
