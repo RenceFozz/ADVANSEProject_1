@@ -6,9 +6,9 @@ public class Student {
    private String name;
    private int id;
    private String password;
-   private ArrayList<Course> courses;
+   private ArrayList<String> courses;
 
-   public Student(String name, int id, String password, ArrayList<Course> courses) {
+   public Student(String name, int id, String password, ArrayList<String> courses) {
       this.name = name;
       this.id = id;
       this.password = password;
@@ -39,15 +39,15 @@ public class Student {
       this.password = password;
    }
 
-   public ArrayList<Course> getCourses() {
+   public ArrayList<String> getCourses() {
       return courses;
    }
 
-   public void setCourses(ArrayList<Course> courses) {
+   public void setCourses(ArrayList<String> courses) {
       this.courses = courses;
    }
    
-   public boolean addCourse(Course course){
+   public boolean addCourse(String s){
        if(this.courses.size() > 9){
            return false;
        }
