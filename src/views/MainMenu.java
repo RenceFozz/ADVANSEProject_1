@@ -110,7 +110,7 @@ public class MainMenu extends javax.swing.JFrame {
       StudentDAO sDao = new StudentDAO();
       Student student = sDao.getStudent(Integer.parseInt(userField.getText()));
 
-      if (student == null) {
+      if (student == null || !student.getPassword().equals(passField.getText())) {
          System.err.println("Invalid Student");
       } else {
          new OptionsMenu(student).setVisible(true);

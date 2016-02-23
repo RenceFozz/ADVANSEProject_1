@@ -136,6 +136,8 @@ public class Register extends javax.swing.JFrame {
       //ArrayList a = new ArrayList<Course>();
       StudentDAO sDao = new StudentDAO();
       sDao.addStudent(Integer.parseInt(idField.getText()), nameField.getText(), passField.getText());
+      new MainMenu().setVisible(true);
+      this.dispose();
    }//GEN-LAST:event_regBtnActionPerformed
 
    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
