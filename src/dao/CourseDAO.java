@@ -14,8 +14,7 @@ public class CourseDAO {
    public ArrayList<Course> GetAllCourses() {
       try {
          // create our mysql database connection
-         String myUrl = Credentials.url;
-         Connection conn = DriverManager.getConnection(myUrl, Credentials.username, Credentials.password);
+         Connection conn = DriverManager.getConnection(Credentials.url, Credentials.username, Credentials.password);
 
          // our SQL SELECT query. 
          // if you only need a few columns, specify them by name instead of using "*"
@@ -50,12 +49,11 @@ public class CourseDAO {
    }
 
    public ArrayList<String> getEnrolledCourse(int id) {
-      ArrayList courses = new ArrayList<String>();
+      ArrayList<String> courses = new ArrayList<>();
 
       try {
          // create our mysql database connection
-         String myUrl = "jdbc:mysql://localhost/advanse";
-         Connection conn = DriverManager.getConnection(myUrl, "root", "");
+         Connection conn = DriverManager.getConnection(Credentials.url, Credentials.username, Credentials.password);
 
           // our SQL SELECT query. 
          // if you only need a few columns, specify them by name instead of using "*"

@@ -5,11 +5,11 @@ import dao.StudentDAO;
 
 public class MainMenu extends javax.swing.JFrame {
 
-    public MainMenu() {
-        initComponents();
-    }
+   public MainMenu() {
+      initComponents();
+   }
 
-    @SuppressWarnings("unchecked")
+   @SuppressWarnings("unchecked")
    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
    private void initComponents() {
 
@@ -101,6 +101,7 @@ public class MainMenu extends javax.swing.JFrame {
       pack();
    }// </editor-fold>//GEN-END:initComponents
 
+
     private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
        new Register().setVisible(true);
        this.dispose();
@@ -110,46 +111,47 @@ public class MainMenu extends javax.swing.JFrame {
       
       StudentDAO sDao = new StudentDAO();
       Student student = sDao.getStudent(Integer.parseInt(userField.getText()));
-      ViewEnrolledCourses enrolledFrame;
-      
-      if(student == null)
-        System.err.println("Invalid Student");
-      else
-        enrolledFrame = new ViewEnrolledCourses(student);
+
+      if (student == null) {
+         System.err.println("Invalid Student");
+      } else {
+         new ViewEnrolledCourses(student).setVisible(true);
+         this.dispose();
+      }
    }//GEN-LAST:event_loginBtnActionPerformed
 
-    public static void main(String args[]) {
+   public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+       * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+       */
+      try {
+         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+               javax.swing.UIManager.setLookAndFeel(info.getClassName());
+               break;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+         }
+      } catch (ClassNotFoundException ex) {
+         java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      } catch (InstantiationException ex) {
+         java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      } catch (IllegalAccessException ex) {
+         java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+         java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      }
+      //</editor-fold>
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainMenu().setVisible(true);
-                
+      java.awt.EventQueue.invokeLater(new Runnable() {
+         public void run() {
+            new MainMenu().setVisible(true);
+
 //               JFrame viewAllCourses = new ViewAllCourses();
 //               viewAllCourses.setVisible(true);
-            }
-        });
-    }
+         }
+      });
+   }
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JLabel jLabel1;
