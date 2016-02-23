@@ -52,7 +52,7 @@ public class StudentDAO {
     public void addStudent(int sID, String name, String password) {
         try {
             // create a mysql database connection
-            java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/advanse?" + "user=root&password=p@ssword");
+            java.sql.Connection conn = DriverManager.getConnection(Credentials.url, Credentials.username, Credentials.password);
 
             // create a sql date object so we can use it in our INSERT statemen
             // the mysql insert statement
@@ -75,7 +75,7 @@ public class StudentDAO {
 
     public void enrollCourse(int sID, String courseCode) {
         try {
-            java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/advanse?" + "user=root&password=p@ssword");
+            java.sql.Connection conn = DriverManager.getConnection(Credentials.url, Credentials.username, Credentials.password);
             String query = "INSERT INTO enrolledCourses (sID, courseCode)" + " values (?,?);";
             PreparedStatement preparedStmt = conn.prepareStatement(query);
             preparedStmt.setInt(1, sID);
@@ -93,7 +93,7 @@ public class StudentDAO {
     public void dropCourse(int sID, String courseCode) {
         try {
             // create a mysql database connection
-            java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/advanse?" + "user=root&password=p@ssword");
+            java.sql.Connection conn = DriverManager.getConnection(Credentials.url, Credentials.username, Credentials.password);
 
             // create a sql date object so we can use it in our INSERT statemen
             // the mysql insert statement
@@ -118,7 +118,7 @@ public class StudentDAO {
     public void updateCount(String courseCode){
         try {
             // create a mysql database connection
-            java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/advanse?" + "user=root&password=p@ssword");
+            java.sql.Connection conn = DriverManager.getConnection(Credentials.url, Credentials.username, Credentials.password);
             int count = 0;
 
             String query = "COUNT(SELECT sID FROM enrolledCourses WHERE courseCode = ?)";
