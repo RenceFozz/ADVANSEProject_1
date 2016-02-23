@@ -3,7 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Sammy%20Caychingco/Documents/NetBeansProjects/ADVANSEProject_1/src/views/MainMenu.java</file>
+            <file>file:/Users/lawrencefoz/NetBeansProjects/ADVANSEProject_1/src/views/DropCourse.java</file>
+            <file>file:/Users/lawrencefoz/NetBeansProjects/ADVANSEProject_1/src/dao/StudentDAO.java</file>
+            <file>file:/Users/lawrencefoz/NetBeansProjects/ADVANSEProject_1/src/views/ViewEnrolledCourses.java</file>
+            <file>file:/Users/lawrencefoz/NetBeansProjects/ADVANSEProject_1/src/views/OptionsMenu.java</file>
+            <file>file:/Users/lawrencefoz/NetBeansProjects/ADVANSEProject_1/src/views/ViewAllCourses.java</file>
+            <file>file:/Users/lawrencefoz/NetBeansProjects/ADVANSEProject_1/src/dao/Credentials.java</file>
+            <file>file:/Users/lawrencefoz/NetBeansProjects/ADVANSEProject_1/src/models/Student.java</file>
+            <file>file:/Users/lawrencefoz/NetBeansProjects/ADVANSEProject_1/src/dao/CourseDAO.java</file>
+            <file>file:/Users/lawrencefoz/NetBeansProjects/ADVANSEProject_1/src/views/MainMenu.java</file>
         </group>
     </open-files>
 </project-private>
