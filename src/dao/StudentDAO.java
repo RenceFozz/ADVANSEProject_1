@@ -48,4 +48,29 @@ public class StudentDAO {
       }
       return null;
    }
+   
+   public void addStudent(int sID, String name, String password) {
+        try {
+            // create a mysql database connection
+            java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/advanse?" + "user=root&password=p@ssword");
+
+      // create a sql date object so we can use it in our INSERT statemen
+            // the mysql insert statement
+            String query = "INSERT INTO students (sID, fullName, password)" + " values (?,?,?);";
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setInt(1,sID);
+            preparedStmt.setString(2, name);
+            preparedStmt.setString(3, password);
+      // execute the preparedstatement
+            preparedStmt.execute();
+            conn.close();
+            
+
+        } catch (Exception e) {
+            System.err.println("Got an exception!");
+            System.err.println(e.getMessage());
+        }
+
+    }
 }
