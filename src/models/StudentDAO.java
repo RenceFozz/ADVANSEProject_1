@@ -36,18 +36,17 @@ public class StudentDAO {
       String name, password;
       Student s;
       ArrayList<String> courses = new ArrayList<String>();
+      CourseDAO cDao = new CourseDAO();
       if(rs.next()){
           idNo = rs.getInt("sID");
           name = rs.getString("fullName");
           password = rs.getString("password");
+          courses = cDao.getEnrolledCourse(idNo);
           s = new Student(name,idNo,password,courses);
           
-          //getCourses
-          
-          
-      conn.close();
-          return s;
-      }
+        conn.close();
+            return s;
+        }
       else{
           
           conn.close();
