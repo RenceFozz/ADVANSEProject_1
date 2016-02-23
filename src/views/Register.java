@@ -5,6 +5,7 @@
  */
 package views;
 
+import dao.StudentDAO;
 import java.util.ArrayList;
 import models.Course;
 import models.Student;
@@ -131,7 +132,8 @@ public class Register extends javax.swing.JPanel {
 
     private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
         ArrayList a = new ArrayList<Course>();
-        Student s = new Student(nameField.getText(), Integer.parseInt(idField.getText()), passField.getText(), a);
+        StudentDAO sDao = new StudentDAO();
+        sDao.addStudent(Integer.parseInt(idField.getText()), nameField.getText(), passField.getText());
     }//GEN-LAST:event_regBtnActionPerformed
 
     private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
