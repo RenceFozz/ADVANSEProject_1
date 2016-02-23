@@ -22,7 +22,7 @@ public class ViewAllCourses extends javax.swing.JFrame {
          courseModel.removeRow(i);
       }
       
-      ArrayList<Course> courses = cd.GetAllCourses();
+      ArrayList<Course> courses = cd.getAllCourses();
       for (Course course : courses) {
          courseModel.addRow(course.getData());
       }

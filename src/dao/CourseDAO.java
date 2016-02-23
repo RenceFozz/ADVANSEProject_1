@@ -11,7 +11,7 @@ public class CourseDAO {
 
    public ArrayList courses = new ArrayList<>();
 
-   public ArrayList<Course> GetAllCourses() {
+   public ArrayList<Course> getAllCourses() {
       try {
          // create our mysql database connection
          Connection conn = DriverManager.getConnection(Credentials.url, Credentials.username, Credentials.password);
