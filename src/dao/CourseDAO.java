@@ -58,7 +58,7 @@ public class CourseDAO {
           // our SQL SELECT query. 
          // if you only need a few columns, specify them by name instead of using "*"
          String query = "SELECT courseCode FROM enrolledCourses"
-                 + "   WHERE sID = " + "'" + id + "';";
+                 + "   WHERE sID = " + id;
 
          // create the java statement
          Statement st = conn.createStatement();

@@ -19,10 +19,6 @@ public class ViewAllCourses extends javax.swing.JFrame {
       DefaultTableModel courseModel = (DefaultTableModel) courseTable.getModel();
       CourseDAO cd = new CourseDAO();
 
-      for (int i = 0; i < courseModel.getRowCount(); i++) {
-         courseModel.removeRow(i);
-      }
-
       ArrayList<Course> courses = cd.getAllCourses();
       for (Course course : courses) {
          courseModel.addRow(course.getData());
@@ -46,10 +42,7 @@ public class ViewAllCourses extends javax.swing.JFrame {
 
         courseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Course Code", "Units", "Max Students", "Enrolled Students"

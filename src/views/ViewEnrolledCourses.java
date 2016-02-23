@@ -1,6 +1,8 @@
 package views;
 
 import dao.StudentDAO;
+import dao.CourseDAO;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import models.Student;
 
@@ -9,6 +11,17 @@ public class ViewEnrolledCourses extends javax.swing.JFrame {
    public ViewEnrolledCourses(Student student) {
       initComponents();
       this.student = student;
+      CourseDAO cDao = new CourseDAO();
+      DefaultTableModel model = (DefaultTableModel)courseTable.getModel();
+      ArrayList<String> courses = cDao.getEnrolledCourse(student.getId());
+      if(!courses.isEmpty()){
+          System.out.println("It has something");
+      }
+      for (String course : courses) {
+          //System.out.println(courses);
+          model.addRow(new Object[]{course}); 
+      }
+      courseTable.setModel(model);
    }
 
    @SuppressWarnings("unchecked")
@@ -44,17 +57,14 @@ public class ViewEnrolledCourses extends javax.swing.JFrame {
 
         courseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Course Code", "Units", "Max Students", "Enrolled Students"
+                "Course Code"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
