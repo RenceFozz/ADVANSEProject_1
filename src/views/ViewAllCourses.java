@@ -130,6 +130,7 @@ public class ViewAllCourses extends javax.swing.JFrame {
        }
 
        sDao.enrollCourse(student.getId(), courseCode);
+       student.addCourse(courseCode);
     }//GEN-LAST:event_addBtnActionPerformed
 
 

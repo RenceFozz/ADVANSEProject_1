@@ -76,21 +76,83 @@ public class StudentDAO {
 
     public void enrollCourse(int sID, String courseCode) {
         try {
-            java.sql.Connection conn = DriverManager.getConnection(Credentials.url, Credentials.username, Credentials.password);
-            String query = "INSERT INTO enrolledCourses (sID, courseCode)" + " values (?,?);";
-            PreparedStatement preparedStmt = conn.prepareStatement(query);
-            preparedStmt.setInt(1, sID);
-            preparedStmt.setString(2, courseCode);
-            preparedStmt.execute();
+            if(checkIfValid(sID,courseCode)){
+                java.sql.Connection conn = DriverManager.getConnection(Credentials.url, Credentials.username, Credentials.password);
+                String query = "INSERT INTO enrolledCourses (sID, courseCode)" + " values (?,?);";
+                PreparedStatement preparedStmt = conn.prepareStatement(query);
+                preparedStmt.setInt(1, sID);
+                preparedStmt.setString(2, courseCode);
+                preparedStmt.execute();
+
+                updateCount(courseCode);
+                conn.close();
+            }
             
-            updateCount(courseCode);
-            conn.close();
         } catch (Exception e) {
             System.err.println("Got an exception!");
             System.err.println(e.getMessage());
         }
     }
-
+    
+    public boolean checkIfValid(int sID, String courseCode){
+        try{
+            java.sql.Connection conn = DriverManager.getConnection(Credentials.url, Credentials.username, Credentials.password);
+            Student s = getStudent(sID);
+            int unitCount = 0;
+            String tempCC = "";
+            
+            String query = "SELECT units FROM courses WHERE courseCode = ?";
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            ResultSet rs = null;
+            
+            for(String code: s.getCourses()){
+                preparedStmt.setString(1, code);
+                rs = preparedStmt.executeQuery();
+                if(rs.next()){
+                    unitCount += rs.getInt("units");
+                }
+            }
+            
+            query = "SELECT courseCode FROM ADVANSE.enrolledCourses WHERE sID = ?";
+            preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setInt(1, sID);
+            rs = preparedStmt.executeQuery();
+            while(rs.next()){
+                tempCC = rs.getString("courseCode");
+                if(tempCC.equals(courseCode)){
+                    System.out.println(courseCode);
+                    System.out.println(tempCC);
+                    return false;
+                }
+            }
+            
+            query = "SELECT * FROM courses where courseCode = ?";
+            preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setString(1, courseCode);
+            rs = preparedStmt.executeQuery();
+            if(rs.next()){
+                int units = rs.getInt("units");
+                int maxNo = rs.getInt("maxStudent");
+                int numOfEnrollees = rs.getInt("numOfEnrollees");
+                
+                if(units + unitCount <= 9 && numOfEnrollees < maxNo){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            
+            else{
+                return false;
+            }
+        } catch (Exception e){
+            System.err.println("Got an exception!");
+            System.err.println(e.getMessage());
+        }
+        return true;
+    }
+    
     public void dropCourse(int sID, String courseCode) {
         try {
             // create a mysql database connection
