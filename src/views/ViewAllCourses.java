@@ -1,6 +1,9 @@
 package views;
 
+import dao.CourseDAO;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import models.Course;
 
 public class ViewAllCourses extends javax.swing.JFrame {
 
@@ -9,12 +12,15 @@ public class ViewAllCourses extends javax.swing.JFrame {
       System.out.println("EOW");
       
       DefaultTableModel courseModel = (DefaultTableModel)courseTable.getModel();
+      CourseDAO cd = new CourseDAO();
       
       for(int i=0;i<courseModel.getRowCount();i++){
          courseModel.removeRow(i);
       }
-      for(int i=0;i<5;i++){
-         courseModel.addRow(rowData);
+      
+      ArrayList<Course> courses = cd.GetAllCourses();
+      for (Course course : courses) {
+         courseModel.addRow(course.getData());
       }
    }
 
@@ -33,17 +39,17 @@ public class ViewAllCourses extends javax.swing.JFrame {
 
       courseTable.setModel(new javax.swing.table.DefaultTableModel(
          new Object [][] {
-            {null, null, null},
-            {null, null, null},
-            {null, null, null},
-            {null, null, null}
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null}
          },
          new String [] {
-            "Course Code", "Units", "Max Students"
+            "Course Code", "Units", "Max Students", "Enrolled Students"
          }
       ) {
          Class[] types = new Class [] {
-            java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
          };
 
          public Class getColumnClass(int columnIndex) {
@@ -65,19 +71,20 @@ public class ViewAllCourses extends javax.swing.JFrame {
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(layout.createSequentialGroup()
             .addContainerGap()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-               .addComponent(Ok)
-               .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(15, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+               .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                  .addGap(0, 0, Short.MAX_VALUE)
+                  .addComponent(Ok)))
+            .addContainerGap())
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(layout.createSequentialGroup()
-            .addContainerGap()
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(Ok)
-            .addContainerGap(14, Short.MAX_VALUE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(Ok))
       );
 
       pack();
