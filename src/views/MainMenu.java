@@ -109,7 +109,12 @@ public class MainMenu extends javax.swing.JFrame {
       
       StudentDAO sDao = new StudentDAO();
       Student student = sDao.getStudent(Integer.parseInt(userField.getText()));
-      ViewEnrolledCourses enrolledFrame = new ViewEnrolledCourses(student);
+      ViewEnrolledCourses enrolledFrame;
+      
+      if(student == null)
+        System.err.println("Invalid Student");
+      else
+        enrolledFrame = new ViewEnrolledCourses(student);
    }//GEN-LAST:event_loginBtnActionPerformed
 
     public static void main(String args[]) {
