@@ -119,13 +119,13 @@ public class ViewAllCourses extends javax.swing.JFrame {
        int row = -1;
        row = courseTable.getSelectedRow();
        if (row > -1) {
-          int end = courseTable.getRowCount() - 1;
-          System.out.println("Index of Start: " + (row + 1) + "; Index of End: " + end + "; Index of To: " + row);
+          //int end = courseTable.getRowCount() - 1;
+          //System.out.println("Index of Start: " + (row + 1) + "; Index of End: " + end + "; Index of To: " + row);
           DefaultTableModel model = (DefaultTableModel) courseTable.getModel();
-          if (row != end) {
+          /*if (row != end) {
              model.moveRow(row + 1, end, row);
-          }
-          courseCode = courseTable.getModel().getValueAt(end, 0) + "";
+          }*/
+          courseCode = courseTable.getModel().getValueAt(row, 0) + "";
           courseTable.setModel(model);
        }
 
