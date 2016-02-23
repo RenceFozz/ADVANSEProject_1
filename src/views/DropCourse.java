@@ -1,5 +1,7 @@
 package views;
 
+import javax.swing.table.DefaultTableModel;
+
 public class DropCourse extends javax.swing.JFrame {
 
    public DropCourse() {
@@ -77,6 +79,18 @@ public class DropCourse extends javax.swing.JFrame {
 
    private void dropBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropBtnActionPerformed
       // TODO add your handling code here:
+        int row = -1;
+	row = jTable1.getSelectedRow();
+	if(row > -1){
+            int end = jTable1.getRowCount() - 1;
+            System.out.println("Index of Start: "+(row+1)+"; Index of End: "+end+"; Index of To: "+row);
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            if(row!=end){
+                model.moveRow(row+1, end, row);
+            }
+            model.removeRow(end);
+            jTable1.setModel(model);
+	}
    }//GEN-LAST:event_dropBtnActionPerformed
 
    /**
