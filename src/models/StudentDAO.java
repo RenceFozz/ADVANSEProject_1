@@ -5,10 +5,12 @@
  */
 package models;
 
+import java.util.ArrayList;
+
 /**
  *
- * @author Nagate
+ * @author student
  */
-public class Sample {
+public class StudentDAO {
     
 }

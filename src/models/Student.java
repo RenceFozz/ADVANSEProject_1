@@ -47,5 +47,10 @@ public class Student {
       this.courses = courses;
    }
    
-   
+   public boolean addCourse(Course course){
+       if(this.courses.size() > 9){
+           return false;
+       }
+       return true;
+   }
 }

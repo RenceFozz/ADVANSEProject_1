@@ -23,7 +23,7 @@ public class CourseDAO {
         try
     {
       // create our mysql database connection
-      String myUrl = "jdbc:mysql://localhost/test";
+      String myUrl = "jdbc:mysql://localhost/advanse";
       Connection conn = DriverManager.getConnection(myUrl, "root", "");
        
       // our SQL SELECT query. 
@@ -59,5 +59,43 @@ public class CourseDAO {
     }
         
     return courses;
+    }
+    
+    public ArrayList<String> getEnrolledCourse(int id){
+        ArrayList courses = new ArrayList<String>();
+        
+        try
+        {
+          // create our mysql database connection
+          String myUrl = "jdbc:mysql://localhost/advanse";
+          Connection conn = DriverManager.getConnection(myUrl, "root", "");
+
+          // our SQL SELECT query. 
+          // if you only need a few columns, specify them by name instead of using "*"
+          String query = "SELECT courseCode FROM enrolledCourses"
+                  + "   WHERE sID = " + "'"+ id +"';";
+
+          // create the java statement
+          Statement st = conn.createStatement();
+
+          // execute the query, and get a java resultset
+          ResultSet rs = st.executeQuery(query);
+
+          // iterate through the java resultset
+          while (rs.next())
+          {
+            //String courseCode, int units, int maxNumberOfStudents, int numEnrollees
+            String courseCode = rs.getString("courseCode");
+            courses.add(courseCode);
+          }
+          st.close();
+        }
+        catch (Exception e)
+        {
+          System.err.println("Got an exception! ");
+          System.err.println(e.getMessage());
+        }
+
+        return courses;
     }
 }
