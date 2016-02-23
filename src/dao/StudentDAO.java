@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +12,7 @@ public class StudentDAO {
     public Student getStudent(int ID) {
         try {
             // create a mysql database connection
-            java.sql.Connection conn = DriverManager.getConnection(Credentials.url, Credentials.username, Credentials.password);
+            Connection conn = DriverManager.getConnection(Credentials.url, Credentials.username, Credentials.password);
 
       // create a sql date object so we can use it in our INSERT statemen
             // the mysql insert statement
