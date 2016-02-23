@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Vector;
+
 public class Course {
     private String courseCode;
     private int units;
@@ -11,6 +13,10 @@ public class Course {
       this.units = units;
       this.maxNumberOfStudents = maxNumberOfStudents;
       this.numEnrollees = numEnrollees;
+   }
+   
+   public Object[] getData(){
+      return new Object[]{courseCode, units, maxNumberOfStudents, numEnrollees};
    }
 
     public String getCourseCode() {
