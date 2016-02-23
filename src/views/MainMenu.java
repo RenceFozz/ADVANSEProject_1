@@ -1,6 +1,5 @@
 package views;
 
-import javax.swing.JFrame;
 import models.Student;
 import dao.StudentDAO;
 
@@ -103,6 +102,8 @@ public class MainMenu extends javax.swing.JFrame {
    }// </editor-fold>//GEN-END:initComponents
 
     private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
+       new Register().setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_regBtnActionPerformed
 
    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
