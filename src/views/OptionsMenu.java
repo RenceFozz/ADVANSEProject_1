@@ -57,11 +57,13 @@ public class OptionsMenu extends javax.swing.JFrame {
    }// </editor-fold>//GEN-END:initComponents
 
    private void enrollCoursesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enrollCoursesButtonActionPerformed
-      new ViewEnrolledCoursesPanel(student).setVisible(true);
+      new ViewEnrolledCourses(student).setVisible(true);
+      this.dispose();
    }//GEN-LAST:event_enrollCoursesButtonActionPerformed
 
    private void allCoursesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allCoursesBtnActionPerformed
       new ViewAllCourses(student).setVisible(true);
+      this.dispose();
    }//GEN-LAST:event_allCoursesBtnActionPerformed
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
