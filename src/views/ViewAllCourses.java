@@ -1,27 +1,28 @@
 package views;
 
 import dao.CourseDAO;
+import dao.StudentDAO;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import models.Course;
 import models.Student;
 
-
 public class ViewAllCourses extends javax.swing.JFrame {
+
    private Student student;
-   
+
    public ViewAllCourses(Student student) {
       initComponents();
 
       this.student = student;
-      
-      DefaultTableModel courseModel = (DefaultTableModel)courseTable.getModel();
+
+      DefaultTableModel courseModel = (DefaultTableModel) courseTable.getModel();
       CourseDAO cd = new CourseDAO();
-      
-      for(int i=0;i<courseModel.getRowCount();i++){
+
+      for (int i = 0; i < courseModel.getRowCount(); i++) {
          courseModel.removeRow(i);
       }
-      
+
       ArrayList<Course> courses = cd.getAllCourses();
       for (Course course : courses) {
          courseModel.addRow(course.getData());
@@ -119,7 +120,23 @@ public class ViewAllCourses extends javax.swing.JFrame {
    }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        // TODO add your handling code here:
+       StudentDAO sDao = new StudentDAO();
+       String courseCode = null;
+
+       int row = -1;
+       row = courseTable.getSelectedRow();
+       if (row > -1) {
+          int end = courseTable.getRowCount() - 1;
+          System.out.println("Index of Start: " + (row + 1) + "; Index of End: " + end + "; Index of To: " + row);
+          DefaultTableModel model = (DefaultTableModel) courseTable.getModel();
+          if (row != end) {
+             model.moveRow(row + 1, end, row);
+          }
+          courseCode = courseTable.getModel().getValueAt(end, 0) + "";
+          courseTable.setModel(model);
+       }
+
+       sDao.enrollCourse(student.getId(), courseCode);
     }//GEN-LAST:event_addBtnActionPerformed
 
 

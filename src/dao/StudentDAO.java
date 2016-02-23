@@ -122,7 +122,7 @@ public class StudentDAO {
             java.sql.Connection conn = DriverManager.getConnection(Credentials.url, Credentials.username, Credentials.password);
             int count = 0;
 
-            String query = "COUNT(SELECT sID FROM enrolledCourses WHERE courseCode = ?)";
+            String query = "select COUNT(*) FROM enrolledcourses WHERE courseCode = ?;";
             PreparedStatement preparedStmt = conn.prepareStatement(query);
             preparedStmt.setString(1, courseCode);
 
