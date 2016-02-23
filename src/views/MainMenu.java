@@ -107,14 +107,13 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_regBtnActionPerformed
 
    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-      
       StudentDAO sDao = new StudentDAO();
       Student student = sDao.getStudent(Integer.parseInt(userField.getText()));
 
       if (student == null) {
          System.err.println("Invalid Student");
       } else {
-         new ViewEnrolledCourses(student).setVisible(true);
+         new OptionsMenu(student).setVisible(true);
          this.dispose();
       }
    }//GEN-LAST:event_loginBtnActionPerformed
@@ -145,9 +144,6 @@ public class MainMenu extends javax.swing.JFrame {
       java.awt.EventQueue.invokeLater(new Runnable() {
          public void run() {
             new MainMenu().setVisible(true);
-
-//               JFrame viewAllCourses = new ViewAllCourses();
-//               viewAllCourses.setVisible(true);
          }
       });
    }

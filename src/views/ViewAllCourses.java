@@ -4,12 +4,16 @@ import dao.CourseDAO;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import models.Course;
+import models.Student;
+
 
 public class ViewAllCourses extends javax.swing.JFrame {
-
-   public ViewAllCourses() {
+   private Student student;
+   
+   public ViewAllCourses(Student student) {
       initComponents();
-      System.out.println("EOW");
+
+      this.student = student;
       
       DefaultTableModel courseModel = (DefaultTableModel)courseTable.getModel();
       CourseDAO cd = new CourseDAO();
@@ -116,7 +120,8 @@ public class ViewAllCourses extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
-      // TODO add your handling code here:
+      new OptionsMenu(student).setVisible(true);
+      this.dispose();
    }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed

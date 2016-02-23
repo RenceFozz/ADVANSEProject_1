@@ -50,11 +50,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="View Enrolled Courses"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enrollCoursesButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="allCoursesBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="View All Courses"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="allCoursesBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
