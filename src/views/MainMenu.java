@@ -2,7 +2,7 @@ package views;
 
 import javax.swing.JFrame;
 import models.Student;
-import models.StudentDAO;
+import dao.StudentDAO;
 
 public class MainMenu extends javax.swing.JFrame {
 
@@ -137,10 +137,10 @@ public class MainMenu extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                new MainMenu().setVisible(true);
+                new MainMenu().setVisible(true);
                 
-               JFrame viewAllCourses = new ViewAllCourses();
-               viewAllCourses.setVisible(true);
+//               JFrame viewAllCourses = new ViewAllCourses();
+//               viewAllCourses.setVisible(true);
             }
         });
     }
