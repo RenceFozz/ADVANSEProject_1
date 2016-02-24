@@ -1,0 +1,17 @@
+Strategy
+
+Language Used: Java
+Database Used: MySQL
+
+Integration Of Choice: Feature-oriented Incrememental Testing
+
+Division of Tasks:
+
+Roscoe Alicbusan: created Course model, studentDAO. Contributed to error-checking
+Jedidiah Caychingco: created the Student model, creation of view controllers
+Lynette Chan: initiated all the Views, create courseDAO, creation of view controllers
+Laurence Foz: Creation of Database. Contributed to error-checking. JTable drop
+
+All members contributed to the Controllers
+
+Total Time taken to program after ADVANSE: 3 hours, 30 minutes

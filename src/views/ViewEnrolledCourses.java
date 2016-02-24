@@ -11,6 +11,7 @@ public class ViewEnrolledCourses extends javax.swing.JFrame {
    public ViewEnrolledCourses(Student student) {
       initComponents();
       this.student = student;
+      jLabel2.setText("Student: "+student.getName());
       CourseDAO cDao = new CourseDAO();
       DefaultTableModel model = (DefaultTableModel)courseTable.getModel();
       ArrayList<String> courses = cDao.getEnrolledCourse(student.getId());
@@ -18,7 +19,6 @@ public class ViewEnrolledCourses extends javax.swing.JFrame {
           System.out.println("It has something");
       }
       for (String course : courses) {
-          //System.out.println(courses);
           model.addRow(new Object[]{course}); 
       }
       courseTable.setModel(model);
